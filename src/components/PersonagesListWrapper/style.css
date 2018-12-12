@@ -1,0 +1,18 @@
+.Home__ShowcaseWrapper{
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    min-height: calc(60vh - 5rem);
+    padding: 1.875rem;
+    background: rgb(32, 35, 41);
+}
+
+.Home__ShowcaseInner{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    max-width: 1260px;
+    min-height: 40vh;
+}
