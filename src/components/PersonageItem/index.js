@@ -34,7 +34,7 @@ export class PersonageItem extends React.Component{
 						<span>LAST LOCATION</span><p>{personage.location.name}</p>
 					</div>
 					<div className="CharacterCard__TextWrapper">
-						<Link to={`personage/${personage.id}`}>Show more</Link>
+						<Link to={`/personage/${personage.id}`}>Show more</Link>
 					</div>
 				</div>
 			</article>

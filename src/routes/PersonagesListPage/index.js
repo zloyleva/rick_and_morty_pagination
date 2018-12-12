@@ -15,11 +15,21 @@ export class PersonagesListPage  extends React.Component{
 		this.fetchPersonages();
 	}
 	
-	fetchPersonages(){
-		
-		const page = (this.props.match == null || !"page" in this.props.match.params)?"":`?page=${this.props.match.params.page}`;
-		console.log(page);
-		
+	componentWillReceiveProps(nextProps) {
+		console.log("componentWillReceiveProps",nextProps.match.params.page);
+		this.fetchPersonages(nextProps.match.params.page);
+	}
+	
+	setNumberOfPageToLoad(setPage=null){
+		if(setPage){
+			return `?page=${setPage}`;
+		}
+		return (this.props.match == null || !"page" in this.props.match.params)?"":`?page=${this.props.match.params.page}`;
+	}
+	
+	fetchPersonages(setPage=null){
+		const page = this.setNumberOfPageToLoad(setPage);
+		console.log("fetchPersonages: ",page);
 		fetch(`https://rickandmortyapi.com/api/character/${page}`)
 			.then(res => res.json())
 			.then(res => {
@@ -29,6 +39,11 @@ export class PersonagesListPage  extends React.Component{
 						info: res.info,
 					})
 				}
+				
+				console.log("fetchPersonages: >>",this.props.match.params.page);
+			})
+			.catch(err => {
+				console.log(err);
 			});
 	}
 	
@@ -43,7 +58,7 @@ export class PersonagesListPage  extends React.Component{
 					hiddenSubtile={"I got one right here, grab\tmy terry flap"}
 				/>
 				<PersonagesListWrapper personages={personages} />
-				<Pagination info={info} currentPage={currentPage}/>
+				<Pagination onReloadPersonages={this.fetchPersonages} info={info} currentPage={currentPage}/>
 			</div>
 		);
 	}

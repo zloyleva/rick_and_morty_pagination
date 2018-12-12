@@ -12,9 +12,9 @@ export class Pagination extends React.Component{
 			<section className="Pagination__Wrapper">
 				<nav aria-label="Page__Navigation">
 					<ul className="pagination">
-						<PaginationItem title={"Previous"} />
-						<PaginationItem title={currentPage} />
-						<PaginationItem title={"Next"} />
+						<PaginationItem reloadPersonages={this.props.onReloadPersonages} title={"Previous"} status={info.prev} link={`/page/${+currentPage-1}`}/>
+						<PaginationItem title={currentPage} status={null} link={"#"}/>
+						<PaginationItem reloadPersonages={this.props.onReloadPersonages} title={"Next"} status={info.next} link={`/page/${+currentPage+1}`}/>
 					</ul>
 				</nav>
 			</section>
